@@ -20,14 +20,15 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.inet     :last_sign_in_ip
 
       # Hiresly Specific Attributes
-      t.boolean  :admin
-      t.boolean  :employer
-      t.boolean  :developer
-      t.string   :name
-      t.string   :address
-      t.string   :linkedin
-      t.string   :github
-      t.string   :website
+      t.boolean    :admin
+      t.boolean    :employer
+      t.boolean    :developer
+      t.string     :name
+      t.string     :address
+      t.string     :linkedin
+      t.string     :github
+      t.string     :website
+      t.references :interested_user, index: true
 
       t.timestamps null: false
     end
