@@ -9,7 +9,8 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'haml'
-# gem 'devise'
+gem 'bcrypt', '~> 3.1.5', require: "bcrypt"
+gem 'devise'
 
 group :development do
   gem 'byebug'
