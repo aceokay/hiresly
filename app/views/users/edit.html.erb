@@ -1,0 +1,32 @@
+<h2>Complete your profile</h2>
+
+<%= form_for @user do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :linkedin %><br />
+    <%= f.text_field :linkedin, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :github %><br />
+    <%= f.text_field :github, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :website %><br />
+    <%= f.text_field :website, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Finish" %>
+  </div>
+<% end %>
