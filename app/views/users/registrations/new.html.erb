@@ -4,12 +4,11 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= radio_button_tag(:developer, "Developer") %>
+    <%= radio_button_tag(:developer, "true") %>
     <%= label_tag(:developer, "I am a Developer") %>
-    <%= radio_button_tag(:employer, "Employer") %>
-    <%= label_tag(:employer, "I am an Employer") %>
+    <%= radio_button_tag(:developer, "false") %>
+    <%= label_tag(:developer, "I am an Employer") %>
   </div>
-
 
   <div class="field">
     <%= f.label :email %><br />
