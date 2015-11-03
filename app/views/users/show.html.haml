@@ -1,16 +1,20 @@
-%h1 Hello, #{@user.name}
+.container
+  %h1 Hello, #{@user.name}
 
-- if @user.developer
-  %h4 Live tests partial here
-  %ul
-    %li Begin first test
-    %li Tests sent to you
-    %li Tests Completed
-    %li Able to hide tests from employers?
-    %li Able to order tests as desired
-- elsif @user.employer
-  %ul
-    %li Link to view developers
-    %li Link to build a new test
-    %li List of users who have completed a test sent from this employer
-    %li Short list of users who have recently completed any test
+  - if @user.developer
+    %h4 Live tests partial here
+    %ul
+      %li Begin first test
+      %li Tests sent to you
+      %li Tests Completed
+      %li Able to hide tests from employers?
+      %li Able to order tests as desired
+  - elsif @user.employer
+    %h4 Employer relevant partial here
+    %ul
+      %li Link to view developers
+      %li Link to build a new test
+      %li List of users who have completed a test sent from this employer
+      %li Short list of users who have recently completed any test
+
+= render :partial => "employer_tile"
