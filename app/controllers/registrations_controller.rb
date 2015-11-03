@@ -19,7 +19,7 @@ class RegistrationsController < Devise::RegistrationsController
       # Fix this, it's not super important but it should alert users that they have signed up and so on.
       # flash[:success] = "Welcome, #{@user.name}! You're a part of the Hiresly family now."
       # flash.keep(:notice)
-      redirect_to root_path
+      redirect_to user_path(@user)
     else
       # flash[:danger] = "There was some error with your login!"
       render :new
