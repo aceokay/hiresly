@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+    @developers = User.where(["developer = ?", "true"])
+  end
+
   def show
     @user = User.find(params[:id])
     if @user.name.nil?

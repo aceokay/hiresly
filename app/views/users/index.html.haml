@@ -1,0 +1,5 @@
+%ul
+  - @developers.each do |developer|
+    %li
+      =link_to user_path(developer) do
+        #{developer.name}
