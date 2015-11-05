@@ -1,5 +1,9 @@
 #test-area
+  %h4 Tests created
+  %ul#custom-test-list
+    - current_user.problems.each do |problem|
+      %li= problem.title
+  =link_to new_problem_path, id: "new-test-link", remote: true do
+    Make a new test
 =link_to users_path do
   See the developers
-=link_to new_problem_path, id: "new-test-link", remote: true do
-  Make a new test

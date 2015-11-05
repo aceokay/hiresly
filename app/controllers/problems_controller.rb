@@ -5,7 +5,6 @@ class ProblemsController < ApplicationController
 
   def create
     @problem = current_user.problems.new(problem_params)
-    binding.pry
     if @problem.save
       respond_to do |format|
         format.html { redirect_to user_path(current_user) }
