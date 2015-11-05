@@ -4,10 +4,20 @@ class ProblemsController < ApplicationController
   end
 
   def create
-
+    @problem = current_user.problems.new(problem_params)
+    binding.pry
+    if @problem.save
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user) }
+        format.js
+      end
+    else
+      flash[:alert] = 'Please supply text the challenge'
+    end
   end
 
   private
   def problem_params
+    params.require(:problem).permit(:title, :body, :difficulty)
   end
 end

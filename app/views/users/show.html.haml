@@ -1,5 +1,5 @@
 .container
-  %h1 Hello, #{@user.name}
+  %h1 Hello, #{@user.email}
 
   - if @user.developer
     = render "developer_tile", user: @user
