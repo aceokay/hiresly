@@ -1,5 +1,5 @@
 %p cheese
-= form_for @problem do |f|
+= form_for @problem, remote: true do |f|
   = f.label :title, "Problem Title"
   = f.text_field :title
   = f.label :body, "Let's hear the challenge!"
