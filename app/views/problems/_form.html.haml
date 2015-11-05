@@ -1,0 +1,10 @@
+%p cheese
+= form_for @problem do |f|
+  = f.label :title, "Problem Title"
+  = f.text_field :title
+  = f.label :body, "Let's hear the challenge!"
+  = f.text_area :body
+  = f.label :difficulty, "Difficulty level"
+  = f.number_field :difficulty
+  %p.button
+    = f.submit 'Submit'
