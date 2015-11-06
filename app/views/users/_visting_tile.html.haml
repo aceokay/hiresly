@@ -2,9 +2,11 @@
 <script type="IN/MemberProfile" data-id="#{@user.linkedin}" data-format="inline"></script>
 
 #request-area
-  %ul#pending-request-list
-    - @requests.each do |request|
-      %li Pending request: #{ Problem.find(request.problem_id).title }
-
-  =link_to new_user_request_path(@user), id: "send-request-link", remote: true do
-    Send #{@user.name} a test!
+  - if @user.requestable(current_user)
+    =link_to new_user_request_path(@user), id: "send-request-link", remote: true do
+      Send #{@user.name} a test!
+  - else
+    %h4 Test Requests
+    %ul#pending-request-list
+      - @requests.each do |request|
+        %li Pending request: #{ Problem.find(request.problem_id).title }
