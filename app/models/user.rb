@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :problems
   has_many :tests
+  has_many :requests
   has_many :interests, class_name: "User",
                        foreign_key: "interested_user_id"
   belongs_to :interested_user, class_name: "User"
