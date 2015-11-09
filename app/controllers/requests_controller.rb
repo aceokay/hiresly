@@ -17,6 +17,15 @@ class RequestsController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find(params[:user_id])
+    @request = Request.destroy(params[:id])
+    respond_to do |format|
+      format.html { redirect_to user_path(user) }
+      format.js
+    end
+  end
+
   private
   def request_params
     params.require(:request).permit(:user_id, :problem_id)

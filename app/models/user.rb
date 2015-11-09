@@ -22,4 +22,12 @@ class User < ActiveRecord::Base
     end
     show_request_link
   end
+
+  def my_request(request)
+    if self.problems.where({ id: request.problem_id }).any?
+      true
+    else
+      false
+    end
+  end
 end

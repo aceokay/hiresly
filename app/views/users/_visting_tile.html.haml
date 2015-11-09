@@ -9,4 +9,9 @@
     %h4 Test Requests
     %ul#pending-request-list
       - @requests.each do |request|
-        %li Pending request: #{ Problem.find(request.problem_id).title }
+        - if current_user.my_request(request)
+          -# The []'d item below dynaically creates IDs consisting of item_x, the below would be request_x
+          %li[request]
+            Pending request: #{ Problem.find(request.problem_id).title }
+            =link_to user_request_path(@user, request), method: :delete, id: "delete-request-link", remote: true do
+              Delete
