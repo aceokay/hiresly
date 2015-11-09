@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     show_request_link = true
     if self.requests.any?
       self.requests.each do |request|
-        if employer.problems.where({ id: request.problem_id })
+        if employer.problems.where({ id: request.problem_id }).any?
           show_request_link = false
         end
       end
