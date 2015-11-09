@@ -1,0 +1,4 @@
+<li id="request_<%= @request.id %>">
+  Pending request: <%= @problem.title %>
+  <%= link_to 'Delete', user_request_path(@user, @request), method: :delete, id: 'delete-request-link', remote: true %>
+</li>

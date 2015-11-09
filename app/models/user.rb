@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
                        foreign_key: "interested_user_id"
   belongs_to :interested_user, class_name: "User"
 
+  # Checks to see if a particular employer can make a request on a developer
+  # Requests are capped at one per employer per developer
   def requestable(employer)
     show_request_link = true
     if self.requests.any?
@@ -23,6 +25,7 @@ class User < ActiveRecord::Base
     show_request_link
   end
 
+  # Checks if a given request belongs to a user (as in it was sent from a user)
   def my_request(request)
     if self.problems.where({ id: request.problem_id }).any?
       true

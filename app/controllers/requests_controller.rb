@@ -5,8 +5,8 @@ class RequestsController < ApplicationController
   end
 
   def create
-    user = User.find(params[:user_id])
-    @request = user.requests.new(request_params)
+    @user = User.find(params[:user_id])
+    @request = @user.requests.new(request_params)
     @problem = Problem.find(@request.problem_id)
     @problem.requests.push(@request)
     if @request.save
@@ -18,10 +18,10 @@ class RequestsController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:user_id])
+    @user = User.find(params[:user_id])
     @request = Request.destroy(params[:id])
     respond_to do |format|
-      format.html { redirect_to user_path(user) }
+      format.html { redirect_to user_path(@user) }
       format.js
     end
   end

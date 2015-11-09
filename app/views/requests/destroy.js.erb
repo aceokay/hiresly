@@ -1,1 +1,2 @@
 $('#request_<%= @request.id %>').remove();
+$('#request-area').append("<%= j render 'request_link', user: @user %>");
