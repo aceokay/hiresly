@@ -2,18 +2,22 @@
 <script type="IN/MemberProfile" data-id="#{@user.linkedin}" data-format="inline"></script>
 
 #test-area
-  %h4 New Challenges
-  %ul#pending-request-list
-    - @problems.each do |problem|
-      %li[problem]
-        #{ problem.id } (from #{ problem.user.name })
-        = form_for [@user, Test.new], remote: true do |f|
-          = f.hidden_field :problem_id, value: problem.id
-          %p.button
-            = f.submit 'Start'
-  %h4 Current live tests
-  %ul#live-test-list
-    - @user.tests.each do |test|
-      %li[test]
-        #{ test.problem.title } (from #{ test.problem.user.name })
-        #{ test.problem.body }
+  - if @problems.any?
+    %h4 New Challenges
+    %ul#pending-request-list
+      - @problems.each do |problem|
+        %li[problem]
+          #{ problem.id } (from #{ problem.user.name })
+          = form_for [@user, Test.new], remote: true do |f|
+            = f.hidden_field :problem_id, value: problem.id
+            %p.button
+              = f.submit 'Start'
+  - if @user.tests.any?
+    %h4 Current live tests
+    %ul#live-test-list
+      - @user.tests.each do |test|
+        %li[test]
+          #{ test.problem.title } (from #{ test.problem.user.name })
+          #{ test.problem.body }
+          =link_to edit_user_test_path(@user, test), remote: true do
+            Submit Answer

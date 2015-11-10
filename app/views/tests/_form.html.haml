@@ -1,0 +1,9 @@
+= form_for [@user, @test], remote: true do |f|
+  = f.label :answer_text, 'Solution'
+  = f.text_area :answer_text, autofocus: true
+  = f.label :github_url, 'Github Repo Link'
+  = f.text_field :github_url
+  = f.label :video_url, 'Video link'
+  = f.text_field :video_url
+  %p.button
+    = f.submit 'Start'

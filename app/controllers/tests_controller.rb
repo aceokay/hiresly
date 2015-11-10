@@ -1,15 +1,10 @@
 class TestsController < ApplicationController
-  # def new
-  #   @test = Test.new
-  # end
-
   def create
     @user = User.find(params[:user_id])
     @test = @user.tests.new(test_params)
     @problem = Problem.find(@test.problem_id)
     @problem.tests.push(@test)
-    #delete the request
-    # binding.pry
+    #delete the request below as to not see the same request again. Allows for resubmition of test request
     @user.requests.where({ problem_id: @problem.id }).first.destroy
     if @test.save
       respond_to do |format|
@@ -19,9 +14,17 @@ class TestsController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:user_id])
+    @test = Test.find(params[:id])
+  end
+
+  def update
+    
+  end
+
   private
   def test_params
-    # binding.pry
     params.require(:test).permit(:problem_id)
   end
 end
