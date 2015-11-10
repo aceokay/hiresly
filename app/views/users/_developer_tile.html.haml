@@ -6,9 +6,14 @@
   %ul#pending-request-list
     - @problems.each do |problem|
       %li[problem]
-        #{ problem.title } (from #{ problem.user.name })
+        #{ problem.id } (from #{ problem.user.name })
         = form_for [@user, Test.new], remote: true do |f|
-          = f.hidden_field :problem_id
-          = hidden_field_tag :problem_id, problem.id
+          = f.hidden_field :problem_id, value: problem.id
           %p.button
             = f.submit 'Start'
+  %h4 Current live tests
+  %ul#live-test-list
+    - @user.tests.each do |test|
+      %li[test]
+        #{ test.problem.title } (from #{ test.problem.user.name })
+        #{ test.problem.body }
