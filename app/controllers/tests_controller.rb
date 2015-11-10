@@ -1,7 +1,7 @@
 class TestsController < ApplicationController
-  def new
-    @test = Test.new
-  end
+  # def new
+  #   @test = Test.new
+  # end
 
   # def create
   #   @problem = current_user.problems.new(problem_params)

@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :users do
     resources :tests
   end
+  resources :problems
 end
