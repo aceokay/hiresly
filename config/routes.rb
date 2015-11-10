@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :requests
   end
-  resources :problems do
+  resources :users do
     resources :tests
   end
 end

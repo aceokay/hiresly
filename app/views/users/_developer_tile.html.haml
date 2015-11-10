@@ -1,2 +1,14 @@
 <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
 <script type="IN/MemberProfile" data-id="#{@user.linkedin}" data-format="inline"></script>
+
+#test-area
+  %h4 New Challenges
+  %ul#pending-request-list
+    - @problems.each do |problem|
+      %li[problem]
+        #{ problem.title } (from #{ problem.user.name })
+        = form_for [@user, Test.new], remote: true do |f|
+          = f.hidden_field :problem_id
+          = hidden_field_tag :problem_id, problem.id
+          %p.button
+            = f.submit 'Start'

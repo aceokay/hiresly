@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @requests = Request.where({ user_id: @user.id })
+    @problems = @user.request_problems
     # binding.pry
     if @user.name.nil?
       render :edit

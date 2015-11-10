@@ -33,4 +33,13 @@ class User < ActiveRecord::Base
       false
     end
   end
+
+  # returns an array of problems from requests aimed at a given User
+  def request_problems()
+    request_array = []
+    self.requests.each do |request|
+      request_array.push(Problem.find(request.problem_id))
+    end
+    request_array
+  end
 end

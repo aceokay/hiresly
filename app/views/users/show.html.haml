@@ -3,7 +3,7 @@
     %h1= @user.name
     - if @user.developer
       = render "developer_tile", user: @user
-      %h4 Live tests partial here
+      %h4 Developer relevant partial here
       %ul
         %li Begin first test
         %li Tests sent to you
@@ -19,9 +19,9 @@
         %li List of users who have completed a test sent from this employer
         %li Short list of users who have recently completed any test
 
-    %h4 Testing Partials Area
-    = render "developer_tile", user: @user
-    = render "employer_tile", user: @user
+    -# %h4 Testing Partials Area
+    -# = render "developer_tile", user: @user
+    -# = render "employer_tile", user: @user
   - else
     %h1 #{@user.name}
     = render 'visting_tile', user: @user
