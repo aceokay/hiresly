@@ -10,6 +10,13 @@
       - @requests.each do |request|
         %li
           #{request.problem.title} sent to #{request.user.name}
+  - if @completed_tests.any?
+    %h4 Completed Tests
+    %ul#completed-test-list
+      - @completed_tests.each do |test|
+        %li
+          =link_to user_path(test.user) do
+            #{test.problem.title} sent to #{test.user.name}
   =link_to new_problem_path, id: "new-test-link", remote: true do
     Make a new test
 =link_to users_path do

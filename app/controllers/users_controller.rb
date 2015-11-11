@@ -5,15 +5,19 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if @user != current_user && @user.employer
+
+    if @user != current_user && current_user.employer
       @requests = Request.where({ user_id: @user.id })
     elsif @user == current_user && @user.employer
       @requests = @user.my_requests
+      @completed_tests = @user.completed_tests
     end
+
     # binding.pry
     if @user == current_user && @user.developer
       @problems = @user.request_problems
     end
+
     # binding.pry
     if @user.name.nil?
       render :edit

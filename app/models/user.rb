@@ -45,12 +45,23 @@ class User < ActiveRecord::Base
     request_array
   end
 
-  # returns an array of problems from requests aimed at a given User
+  # Returns an array of problems from requests aimed at a given User
   def request_problems()
     problem_array = []
     self.requests.each do |request|
       problem_array.push(Problem.find(request.problem_id))
     end
     problem_array
+  end
+
+  # Returns an array of completed tests (that were originally sent as a request)
+  def completed_tests()
+    test_array = []
+    self.problems.each do |problem|
+      problem.tests.each do |test|
+        test_array.push(test)
+      end
+    end
+    test_array
   end
 end
