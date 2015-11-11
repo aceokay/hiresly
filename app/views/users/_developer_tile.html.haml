@@ -13,11 +13,18 @@
             %p.button
               = f.submit 'Start'
   - if @user.tests.any?
-    %h4 Current live tests
+    %h4 Live tests
     %ul#live-test-list
-      - @user.tests.each do |test|
+      - @user.tests.where({ github_url: nil }).each do |test|
         %li[test]
           #{ test.problem.title } (from #{ test.problem.user.name })
           #{ test.problem.body }
           =link_to edit_user_test_path(@user, test), remote: true do
-            Submit Answer
+            Submit answer
+    - if @user.tests.where.not(github_url: nil).any?
+      %h4 Completed tests
+      %ul#completed-test-list
+        - @user.tests.where.not(github_url: nil).each do |test|
+          %li[test]
+            #{ test.problem.title } (from #{ test.problem.user.name })
+            #{ test.problem.body }

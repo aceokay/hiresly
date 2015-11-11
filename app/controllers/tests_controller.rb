@@ -20,11 +20,18 @@ class TestsController < ApplicationController
   end
 
   def update
-    
+    @user = User.find(params[:user_id])
+    @test = Test.find(params[:id])
+    if @test.update(test_params)
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user) }
+        format.js
+      end
+    end
   end
 
   private
   def test_params
-    params.require(:test).permit(:problem_id)
+    params.require(:test).permit(:problem_id, :video_url, :github_url, :answer_text)
   end
 end

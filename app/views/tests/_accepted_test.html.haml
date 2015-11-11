@@ -1,3 +1,6 @@
 %li[@test]
   #{ @test.problem.title } (from #{ @test.problem.user.name })
   @test.problem.body
+  -# The below was added late, may break.
+  =link_to edit_user_test_path(@user, @test), remote: true do
+    Submit answer
