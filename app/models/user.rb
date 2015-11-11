@@ -34,12 +34,23 @@ class User < ActiveRecord::Base
     end
   end
 
-  # returns an array of problems from requests aimed at a given User
-  def request_problems()
+  # Returns an array of all live requests sent from a given User
+  def my_requests()
     request_array = []
-    self.requests.each do |request|
-      request_array.push(Problem.find(request.problem_id))
+    self.problems.each do |problem|
+      Request.where({ problem_id: problem.id}).each do |request|
+        request_array.push(request)
+      end
     end
     request_array
+  end
+
+  # returns an array of problems from requests aimed at a given User
+  def request_problems()
+    problem_array = []
+    self.requests.each do |request|
+      problem_array.push(Problem.find(request.problem_id))
+    end
+    problem_array
   end
 end

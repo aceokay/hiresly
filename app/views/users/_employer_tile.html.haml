@@ -1,8 +1,15 @@
 #test-area
-  %h4 Tests created
-  %ul#custom-test-list
-    - current_user.problems.each do |problem|
-      %li= problem.title
+  - if @user.problems.any?
+    %h4 Tests created
+    %ul#custom-test-list
+      - @user.problems.each do |problem|
+        %li= problem.title
+  - if @requests.any?
+    %h4 Pending test requests
+    %ul#pending-request-list
+      - @requests.each do |request|
+        %li
+          #{request.problem.title} sent to #{request.user.name}
   =link_to new_problem_path, id: "new-test-link", remote: true do
     Make a new test
 =link_to users_path do
