@@ -8,8 +8,8 @@
         %span.icon-bar
       %a.navbar-brand{href: "/"} Hiresly
     .collapse.navbar-collapse#hiresly-navbar-collapse
-      %ul.nav.navbar-nav.pull-right
-        %p.navbar-text.pull-right
+      %ul.nav.navbar-nav.navbar-right
+        %p.navbar-text.navbar-right
         - if user_signed_in?
           %li
             =link_to edit_user_registration_path, class: ['navbar-link'] do
