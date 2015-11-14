@@ -1,43 +1,47 @@
-.container.col-lg-12.col-md-12.col-xs-12
-  .panel.panel-info
-    .panel-heading
-      .container
-        .row
-          .col-md-4.col-xs-12
-            <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
-            <script type="IN/MemberProfile" data-id="#{@user.linkedin}" data-format="inline"></script>
-          .col-md-6.col-xs-12
-    .panel-body
-      - if @user.tests.any?
-        %h4.panel-title.text-center Completed tests
-        .row
-          - @user.tests.each do |test|
-            .col-lg-6.col-md-6.col-sm-12.col-xs-12
-              %h5.text-center
-                #{ test.problem.title }
-              .well
+.col-lg-12.col-md-12.col-xs-12
+  .row
+    .col-md-4.col-xs-12
+      <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+      <script type="IN/MemberProfile" data-id="#{@user.linkedin}" data-format="inline"></script>
+    -# .col-md-6.col-xs-12
+  - if @user.tests.any?
+    %hr
+    .panel-title
+      %h2 Completed tests
+    %br
+    .row
+      - @user.tests.each do |test|
+        .col-lg-6.col-md-6.col-sm-6.col-xs-12
+          .well
+            .panel.panel-default
+              .panel-body
+                %h3
+                  #{ test.problem.title }
                 %p
-                  #{ test.answer_text }
-                .pull-left
-                  =link_to test.github_url do
-                    GitHub
-                .pull-right
-                  =link_to test.video_url do
-                    Video Explanation
-                %br
-              .text-center
-                <iframe width="368" height="207" src="https://www.youtube.com/embed/#{ test.video_url }" frameborder="0" allowfullscreen></iframe>
-      #request-area
-        %h4 Test Requests
-        - if @user.requestable(current_user)
-          =link_to new_user_request_path(@user), id: "send-request-link", remote: true do
-            Send a test!
-        %ul.list-unstyled#pending-request-list
-          - @requests.each do |request|
-            -# The []'d item below dynaically creates IDs consisting of item_x, the below would be request_x
-            %li[request]
-              #{ Problem.find(request.problem_id).title } #{ request.created_at.strftime("%m/%d/%Y") }
-              - if current_user.my_request(request)
-                .pull-right
-                  =link_to user_request_path(@user, request), method: :delete, id: "delete-request-link", remote: true do
-                    Delete
+                  #{ simple_format(test.problem.body) }
+            %p
+              #{ test.answer_text }
+            .pull-left
+              =link_to test.github_url do
+                GitHub
+            .pull-right
+              -# This link is broken
+              =link_to test.video_url do
+                Video Explanation
+            %br
+          .text-center
+            <iframe width="368" height="207" src="https://www.youtube.com/embed/#{ test.video_url }" frameborder="0" allowfullscreen></iframe>
+  #request-area
+    %h4 Test Requests
+    - if @user.requestable(current_user)
+      =link_to new_user_request_path(@user), id: "send-request-link", remote: true do
+        Send a test!
+    %ul.list-unstyled#pending-request-list
+      - @requests.each do |request|
+        -# The []'d item below dynaically creates IDs consisting of item_x, the below would be request_x
+        %li[request]
+          #{ Problem.find(request.problem_id).title } #{ request.created_at.strftime("%m/%d/%Y") }
+          - if current_user.my_request(request)
+            .pull-right
+              =link_to user_request_path(@user, request), method: :delete, id: "delete-request-link", remote: true do
+                Delete

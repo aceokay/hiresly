@@ -22,7 +22,7 @@ class TestsController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     @test = Test.find(params[:id])
-    binding.pry
+    # binding.pry
     if @test.update(test_params)
       @test.parse_youtube
       respond_to do |format|
