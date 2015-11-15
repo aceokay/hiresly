@@ -5,11 +5,17 @@
       <script type="IN/MemberProfile" data-id="#{@user.linkedin}" data-format="inline"></script>
     .col-md-4.col-xs-12
       #porfolio-tile
-        =link_to @user.website do
-          Portfolio
+        .text-center
+          = fa_icon "heart"
+          %br
+          =link_to @user.website do
+            Portfolio
       #github-tile
-        =link_to @user.github do
-          Github
+        .text-center
+          = fa_icon "github-alt"
+          %br
+          =link_to @user.github do
+            Github
   - if @user.tests.any?
     %hr
     .panel-title
