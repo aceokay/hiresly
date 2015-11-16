@@ -1,23 +1,42 @@
-#test-area
-  - if @user.problems.any?
-    %h4 Tests created
-    %ul#custom-test-list
-      - @user.problems.each do |problem|
-        %li= problem.title
-  - if @requests.any?
-    %h4 Pending test requests
-    %ul#pending-request-list
-      - @requests.each do |request|
-        %li
-          #{request.problem.title} sent to #{request.user.name}
-  - if @completed_tests.any?
-    %h4 Completed Tests
-    %ul#completed-test-list
-      - @completed_tests.each do |test|
-        %li
-          =link_to user_path(test.user) do
-            #{test.problem.title} sent to #{test.user.name}
-  =link_to new_problem_path, id: "new-test-link", remote: true do
-    Make a new test
-=link_to users_path do
-  See the developers
+.col-lg-12.col-md-12.col-xs-12
+  .container
+    =link_to users_path, class: "btn btn-success form-control" do
+      See the developers
+  %br
+  .row
+    #test-area
+      - if @user.problems.any?
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
+          .well
+            %h4 Tests created
+            .panel.panel-default
+              .panel-body
+                %ul#custom-test-list
+                  - @user.problems.each do |problem|
+                    %li= problem.title
+      - if @requests.any?
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
+          .well
+            %h4 Pending test requests
+            .panel.panel-default
+              .panel-body
+                %ul#pending-request-list
+                  - @requests.each do |request|
+                    %li
+                      #{request.problem.title} sent to #{request.user.name}
+      - if @completed_tests.any?
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
+          .well
+            %h4 Test requests completed
+            .panel.panel-default
+              .panel-body
+                %ul#completed-test-list
+                  - @completed_tests.each do |test|
+                    %li
+                      =link_to user_path(test.user) do
+                        #{test.problem.title} sent to #{test.user.name}
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+          .text-center
+            .well
+              =link_to new_problem_path, id: "new-test-link", class: "btn btn-info", remote: true do
+                Make a new test problem
