@@ -1,5 +1,8 @@
-%ul
-  - @developers.each do |developer|
-    %li
+.col-lg-12.col-md-12.col-xs-12
+  .row
+    - @developers.each do |developer|
       =link_to user_path(developer) do
-        #{developer.name}
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
+          .well
+            %h4.text-center #{developer.name}
+            %p Tests complete: #{developer.tests.count}
