@@ -7,6 +7,6 @@
     = f.text_area :body, class: "form-control", placeholder: "Be as detailed as you must. Developers will only deliver as well as you communicate."
   .form-group
     = f.label :difficulty, "Difficulty level", :class => "pull-left"
-    = f.number_field :difficulty, :class => "form-control"
+    = f.select :difficulty, [1, 2, 3], :class => 'form-control pull right'
   %p.button
     = f.submit 'Submit', :class => "btn btn-default"
