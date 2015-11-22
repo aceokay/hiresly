@@ -1,9 +1,12 @@
 = form_for [@user, @test], remote: true do |f|
-  = f.label :answer_text, 'Solution'
-  = f.text_area :answer_text, autofocus: true
-  = f.label :github_url, 'Github Repo Link'
-  = f.text_field :github_url
-  = f.label :video_url, 'Video link'
-  = f.text_field :video_url
+  .form-group
+    = f.label :answer_text, 'Solution breakdown'
+    = f.text_area :answer_text, autofocus: true, class: 'form-control'
+  .form-group
+    = f.label :github_url, 'Github repository link'
+    = f.text_field :github_url, class: 'form-control'
+  .form-group
+    = f.label :video_url, 'Youtube video link'
+    = f.text_field :video_url, class: 'form-control'
   %p.button
-    = f.submit 'Start'
+    = f.submit 'Start', class: "btn btn-default"

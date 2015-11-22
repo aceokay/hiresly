@@ -24,13 +24,15 @@
         .col-lg-4.col-md-4.col-sm-6.col-xs-12
           .user-link-tile.well
             %h4 Incomplete tests
-            .panel.panel-default
-              .panel-body
-                %ul#live-test-list
-                  - @user.tests.where({ github_url: nil }).each do |test|
-                    %li[test]
-                      #{ test.problem.title } (from #{ test.problem.user.name })
-                      #{ test.problem.body }
+            #live-test-list
+              - @user.tests.where({ github_url: nil }).each do |test|
+                %div[test]
+                  .panel.panel-default
+                    .panel-body
+                      %h5[test]
+                        #{ test.problem.title } (from #{ test.problem.user.name })
+                      %p
+                        #{ simple_format(test.problem.body) }
                       =link_to edit_user_test_path(@user, test), remote: true do
                         Submit answer
       - if @user.tests.where.not(github_url: nil).any?
@@ -39,9 +41,20 @@
             %h4 Completed tests
             #completed-test-list
               - @user.tests.where.not(github_url: nil).each do |test|
-                .panel.panel-default
-                  .panel-body
-                    %h5[test]
-                      #{ test.problem.title } (from #{ test.problem.user.name })
-                    %p
-                      #{ simple_format(test.problem.body) }
+                .div[test]
+                  .panel.panel-default
+                    .panel-body
+                      %h5[test]
+                        #{ test.problem.title } (from #{ test.problem.user.name })
+                      %p
+                        #{ simple_format(test.problem.body) }
+                      %hr
+                      %h5 Response:
+                      %p
+                        #{ simple_format(test.answer_text) }
+                      .pull-left
+                        =link_to test.github_url do
+                          GitHub repository
+                      .pull-right
+                        =link_to "https://www.youtube.com/watch?v=" + test.video_url do
+                          Video explanation

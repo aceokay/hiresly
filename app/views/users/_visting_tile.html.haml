@@ -39,11 +39,10 @@
               #{ test.answer_text }
             .pull-left
               =link_to test.github_url do
-                GitHub
+                GitHub repository
             .pull-right
-              -# This link is broken
-              =link_to test.video_url do
-                Video Explanation
+              =link_to "https://www.youtube.com/watch?v=" + test.video_url do
+                Video explanation
             %br
           .text-center
             <iframe width="368" height="207" src="https://www.youtube.com/embed/#{ test.video_url }" frameborder="0" allowfullscreen></iframe>
