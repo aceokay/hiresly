@@ -4,11 +4,11 @@
       <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
       <script type="IN/MemberProfile" data-id="#{@user.linkedin}" data-format="inline"></script>
     #test-area
-      - if @problems.any?
-        .col-lg-4.col-md-4.col-sm-6.col-xs-12
-          #pending-request-list.user-link-tile
-            .well
-              %h4 New test challenges
+      .col-lg-4.col-md-4.col-sm-6.col-xs-12
+        #pending-request-list.user-link-tile
+          .well
+            %h4 New test challenges
+            - if @problems.any?
               - @problems.each do |problem|
                 %div[problem]
                   .panel.panel-default
@@ -20,11 +20,15 @@
                             = f.hidden_field :problem_id, value: problem.id
                             %p.button.pull-right
                               = f.submit 'Start', class: "btn btn-default"
-      - if @user.tests.where({ github_url: nil }).any?
-        .col-lg-4.col-md-4.col-sm-6.col-xs-12
-          .user-link-tile.well
-            %h4 Incomplete tests
-            #live-test-list
+            - else
+              .panel.panel-default
+                .panel-body
+                  %h5 Awaiting a challenge
+      .col-lg-4.col-md-4.col-sm-6.col-xs-12
+        .user-link-tile.well
+          %h4 Incomplete tests
+          #live-test-list
+            - if @user.tests.where({ github_url: nil }).any?
               - @user.tests.where({ github_url: nil }).each do |test|
                 %div[test]
                   .panel.panel-default
@@ -35,13 +39,17 @@
                         #{ simple_format(test.problem.body) }
                       =link_to edit_user_test_path(@user, test), remote: true do
                         Submit answer
-      - if @user.tests.where.not(github_url: nil).any?
-        .col-lg-4.col-md-4.col-sm-6.col-xs-12
-          .user-link-tile.well
-            %h4 Completed tests
-            #completed-test-list
+            - else
+              .panel.panel-default
+                .panel-body
+                  %h5 No tests started
+      .col-lg-4.col-md-4.col-sm-6.col-xs-12
+        .user-link-tile.well
+          %h4 Completed tests
+          #completed-test-list
+            - if @user.tests.where.not(github_url: nil).any?
               - @user.tests.where.not(github_url: nil).each do |test|
-                .div[test]
+                .div
                   .panel.panel-default
                     .panel-body
                       %h5[test]
@@ -58,3 +66,7 @@
                       .pull-right
                         =link_to "https://www.youtube.com/watch?v=" + test.video_url do
                           Video explanation
+            - else
+              .panel.panel-default
+                .panel-body
+                  %h5 No tests completed
