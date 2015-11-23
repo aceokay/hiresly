@@ -1,7 +1,11 @@
-= form_for [@user, @request], remote: true do |f|
-  = f.label :problem_id, 'Challenge'
-  = f.collection_select :problem_id, current_user.problems.all, :id, :title
-  = f.hidden_field :user_id
-  = hidden_field_tag :user_id, @user.id
-  %p.button
-    = f.submit 'Send'
+#request-form.panel.panel-default
+  .panel-body
+    = form_for [@user, @request], class: "form-inline", remote: true do |f|
+      .form-group
+        = f.label :problem_id, 'Challenge', class: "pull-left"
+        = f.collection_select :problem_id, current_user.problems.all, :id, :title
+      .form-group
+        = f.hidden_field :user_id
+        = hidden_field_tag :user_id, @user.id
+      %p.button
+        = f.submit 'Start', class: "btn btn-default pull-right"

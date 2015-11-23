@@ -47,20 +47,25 @@
           .text-center
             <iframe width="368" height="207" src="https://www.youtube.com/embed/#{ test.video_url }" frameborder="0" allowfullscreen></iframe>
           %hr
-      #request-area
-        .col-lg-4.col-md-6.col-sm-6.col-xs-12
-          .well
+      .col-lg-4.col-md-6.col-sm-6.col-xs-12
+        .well
+          #request-area
             %h3.text-center Test Requests
-            %p
-              - if @user.requestable(current_user)
-                =link_to new_user_request_path(@user), id: "send-request-link", remote: true do
-                  Send a test!
-              %ul.list-unstyled#pending-request-list
-                - @requests.each do |request|
-                  -# The []'d item below dynaically creates IDs consisting of item_x, the below would be request_x
-                  %li[request]
-                    #{ Problem.find(request.problem_id).title } #{ request.created_at.strftime("%m/%d/%Y") }
-                    - if current_user.my_request(request)
-                      .pull-right
-                        =link_to user_request_path(@user, request), method: :delete, id: "delete-request-link", remote: true do
-                          Delete
+            - if @user.requestable(current_user)
+              #send-request-link.text-center
+                =link_to new_user_request_path(@user), class: "btn btn-success form-control", remote: true do
+                  Send a test
+            #pending-request-list
+              - @requests.each do |request|
+                %div[request]
+                  .panel.panel-default
+                    .panel-body
+                      %h5.col-lg-6.col-md-6.col-sm-6.col-xs-6
+                        #{ Problem.find(request.problem_id).title }
+                        .small
+                          #{ request.created_at.strftime("%m/%d/%Y") }
+                      - if current_user.my_request(request)
+                        .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                          .pull-right
+                            =link_to user_request_path(@user, request), method: :delete, id: "delete-request-link", class: "btn btn-danger", remote: true do
+                              Delete
