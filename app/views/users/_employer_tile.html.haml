@@ -10,10 +10,9 @@
           %h4 Tests created
           .panel.panel-default
             .panel-body
-              %ul#custom-test-list.list-unstyled
+              %ul#custom-test-list.list-unstyled.text-center
                 - @user.problems.each do |problem|
-                  .text-center
-                    %li= problem.title
+                  %li= problem.title
                   %hr
       - if @requests.any?
         .col-lg-4.col-md-4.col-sm-6.col-xs-12
