@@ -4,39 +4,45 @@
       See the developers
   %br
   .row
-    - if @user.problems.any?
-      .col-lg-4.col-md-4.col-sm-6.col-xs-12
-        .well
+    .well.col-lg-12.col-md-12.col-xs-12
+      - if @user.problems.any?
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
           %h4 Tests created
           .panel.panel-default
             .panel-body
-              %ul#custom-test-list
+              %ul#custom-test-list.list-unstyled
                 - @user.problems.each do |problem|
-                  %li= problem.title
-    - if @requests.any?
-      .col-lg-4.col-md-4.col-sm-6.col-xs-12
-        .well
+                  .text-center
+                    %li= problem.title
+                  %hr
+      - if @requests.any?
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
           %h4 Pending test requests
           .panel.panel-default
             .panel-body
-              %ul#pending-request-list
+              %ul#pending-request-list.list-unstyled
                 - @requests.each do |request|
-                  %li
-                    #{request.problem.title} sent to #{request.user.name}
-    - if @completed_tests.any?
-      .col-lg-4.col-md-4.col-sm-6.col-xs-12
-        .well
+                  .text-center
+                    %li
+                      #{request.problem.title} sent to #{request.user.name}
+                    %hr
+      - if @completed_tests.any?
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
           %h4 Test requests completed
           .panel.panel-default
             .panel-body
-              %ul#completed-test-list
+              %ul#completed-test-list.list-unstyled
                 - @completed_tests.each do |test|
-                  %li
-                    =link_to user_path(test.user) do
-                      #{test.problem.title} sent to #{test.user.name}
-    #test-area
-      .col-lg-4.col-md-4.col-sm-6.col-xs-12
+                  .text-center
+                    %li
+                      #{test.problem.title} sent to
+                      =link_to user_path(test.user) do
+                        #{test.user.name}
+                    %hr
+    .row
+      #test-area.col-lg-12.col-md-12.col-sm-12.col-xs-12
         .text-center
           .well
             =link_to new_problem_path, id: "new-test-link", class: "btn btn-info", remote: true do
               Make a new test problem
+    -# .clearfix.visible-xs-block

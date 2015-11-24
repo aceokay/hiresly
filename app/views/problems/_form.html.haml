@@ -4,9 +4,9 @@
     = f.text_field :title, class: "form-control"
   .form-group
     = f.label :body, "Let's hear the challenge!", class: "pull-left"
-    = f.text_area :body, class: "form-control", placeholder: "Be as detailed as you must. Developers will only deliver as well as you communicate."
+    = f.text_area :body, rows: "5", class: "form-control", placeholder: "Be as detailed as you must. Developers will only deliver as well as you communicate."
   .form-group
-    = f.label :difficulty, "Difficulty level", class: "pull-left"
-    = f.select :difficulty, [1, 2, 3], class: 'form-control pull right'
+    = f.label :difficulty, "Difficulty level"
+    = f.select :difficulty, [1, 2, 3]
   %p.button
     = f.submit 'Submit', class: "btn btn-default"
