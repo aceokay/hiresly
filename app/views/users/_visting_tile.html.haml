@@ -1,71 +1,75 @@
 .col-lg-12.col-md-12.col-xs-12
   .row.text-center
-    #linkedin-tile.col-lg-4.col-md-6.col-sm-6.col-xs-12
-      <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
-      <script type="IN/MemberProfile" data-id="#{@user.linkedin}" data-format="inline"></script>
-    .col-lg-8.col-md-6.col-sm-6.col-xs-12
-      .col-lg-6.col-md-12.col-sm-12.col-xs-12
-        .user-link-tile.well
-          =link_to @user.website do
-            .text-center
-              = fa_icon "heart 4x"
-              %br
-              %h2
-                Portfolio
-      .col-lg-6.col-md-12.col-sm-12.col-xs-12
-        .user-link-tile.well
-          =link_to @user.github do
-            .text-center
-              = fa_icon "github-alt 4x"
-              %br
-              %h2
-                Github
+    .well.col-lg-12.col-md-12.col-xs-12
+      #linkedin-tile.col-lg-4.col-md-6.col-sm-6.col-xs-12
+        <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+        <script type="IN/MemberProfile" data-id="#{@user.linkedin}" data-format="inline"></script>
+      .col-lg-8.col-md-6.col-sm-6.col-xs-12
+        .col-lg-6.col-md-12.col-sm-12.col-xs-12
+          .user-link-tile.panel.panel-default
+            .panel-body
+              =link_to @user.website do
+                .text-center
+                  = fa_icon "heart 4x"
+                  %br
+                  %h2
+                    Portfolio
+        .col-lg-6.col-md-12.col-sm-12.col-xs-12
+          .user-link-tile.panel.panel-default
+            .panel-body
+              =link_to @user.github do
+                .text-center
+                  = fa_icon "github-alt 4x"
+                  %br
+                  %h2
+                    Github
   - if @user.tests.any?
     %hr
-    .panel-title
-      %h2 Completed tests
     %br
     .row
-      - @user.tests.each do |test|
-        .col-lg-4.col-md-6.col-sm-6.col-xs-12
-          .well
+      .well.col-lg-12.col-md-12.col-xs-12
+        %h2.text-center Completed tests
+        %br
+        - @user.tests.each do |test|
+          .col-lg-6.col-md-6.col-sm-12.col-xs-12
             .panel.panel-default
               .panel-body
                 %h3
                   #{ test.problem.title }
                 %p
                   #{ simple_format(test.problem.body) }
-            %p
-              #{ test.answer_text }
-            .pull-left
-              =link_to test.github_url do
-                GitHub repository
-            .pull-right
-              =link_to "https://www.youtube.com/watch?v=" + test.video_url do
-                Video explanation
-            %br
-          .text-center
-            <iframe width="368" height="207" src="https://www.youtube.com/embed/#{ test.video_url }" frameborder="0" allowfullscreen></iframe>
-          %hr
-      .col-lg-4.col-md-6.col-sm-6.col-xs-12
-        .well
-          #request-area
-            %h3.text-center Test Requests
-            - if @user.requestable(current_user)
-              #send-request-link.text-center
-                =link_to new_user_request_path(@user), class: "btn btn-success form-control", remote: true do
-                  Send a test
-            #pending-request-list
-              - @requests.each do |request|
-                %div[request]
-                  .panel.panel-default
-                    .panel-body
-                      %h5.col-lg-6.col-md-6.col-sm-6.col-xs-6
-                        #{ Problem.find(request.problem_id).title }
-                        .small
-                          #{ request.created_at.strftime("%m/%d/%Y") }
-                      - if current_user.my_request(request)
-                        .col-lg-6.col-md-6.col-sm-6.col-xs-6
-                          .pull-right
-                            =link_to user_request_path(@user, request), method: :delete, id: "delete-request-link", class: "btn btn-danger", remote: true do
-                              Delete
+                %hr
+                %h5
+                  Response from #{ @user.name }
+                %p
+                  #{ test.answer_text }
+                .pull-left
+                  =link_to test.github_url do
+                    GitHub repository
+                .pull-right
+                  =link_to "https://www.youtube.com/watch?v=" + test.video_url do
+                    Video explanation
+                %br
+                -# .text-center
+                  -# <iframe width="368" height="207" src="https://www.youtube.com/embed/#{ test.video_url }" frameborder="0" allowfullscreen></iframe>  
+      .well.col-lg-12.col-md-12.col-sm-12.col-xs-12
+        #request-area
+          %h2.text-center Test Requests
+          - if @user.requestable(current_user)
+            #send-request-link.text-center
+              =link_to new_user_request_path(@user), class: "btn btn-success form-control", remote: true do
+                Send a test
+          #pending-request-list
+            - @requests.each do |request|
+              %div[request]
+                .panel.panel-default
+                  .panel-body
+                    %h5.col-lg-6.col-md-6.col-sm-6.col-xs-6
+                      #{ Problem.find(request.problem_id).title }
+                      .small
+                        #{ request.created_at.strftime("%m/%d/%Y") }
+                    - if current_user.my_request(request)
+                      .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                        .pull-right
+                          =link_to user_request_path(@user, request), method: :delete, id: "delete-request-link", class: "btn btn-danger", remote: true do
+                            Delete
