@@ -1,58 +1,57 @@
 .col-lg-12.col-md-12.col-xs-12
   .row
-    #linkedin-tile.col-lg-4.col-md-6.col-sm-6.col-xs-12.text-center
-      <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
-      <script type="IN/MemberProfile" data-id="#{@user.linkedin}" data-format="inline"></script>
-    #test-area
-      .col-lg-4.col-md-4.col-sm-6.col-xs-12
-        #pending-request-list.user-link-tile
-          .well
-            %h4 New test challenges
-            - if @problems.any?
-              - @problems.each do |problem|
-                %div[problem]
-                  .panel.panel-default
-                    .panel-body
-                      .visible-lg-inline
-                        %br
-                          = form_for [@user, Test.new], remote: true do |f|
-                            = f.label :problem_id, "#{ problem.title } (from #{ problem.user.name })"
-                            = f.hidden_field :problem_id, value: problem.id
-                            %p.button.pull-right
-                              = f.submit 'Start', class: "btn btn-default"
-            - else
+    .well.col-lg-12.col-md-12.col-xs-12
+      #linkedin-tile.col-lg-4.col-md-6.col-sm-6.col-xs-12.text-center
+        <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+        <script type="IN/MemberProfile" data-id="#{@user.linkedin}" data-format="inline"></script>
+      #test-area
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
+          #pending-request-list.user-link-tile
+            .panel.panel-default
+              .panel-body
+                %h4.text-center New test challenges
+                %hr
+                - if @problems.any?
+                  - @problems.each do |problem|
+                    %div[problem]
+                      = form_for [@user, Test.new], remote: true do |f|
+                        = f.label :problem_id, "#{ problem.title } (from #{ problem.user.name })"
+                        = f.hidden_field :problem_id, value: problem.id
+                        %p.button.pull-right
+                          = f.submit 'Start', class: "btn btn-default"
+                - else
+                  %h5.text-center Awaiting a challenge
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
+          .user-link-tile
+            #live-test-list
               .panel.panel-default
                 .panel-body
-                  %h5 Awaiting a challenge
-      .col-lg-4.col-md-4.col-sm-6.col-xs-12
-        .user-link-tile.well
-          %h4 Incomplete tests
-          #live-test-list
-            - if @user.tests.where({ github_url: nil }).any?
-              - @user.tests.where({ github_url: nil }).each do |test|
-                %div[test]
+                  %h4.text-center Incomplete tests
+                  %hr
+                  - if @user.tests.where({ github_url: nil }).any?
+                    - @user.tests.where({ github_url: nil }).each do |test|
+                      %div[test]
+                        %h5
+                          #{ test.problem.title } (from #{ test.problem.user.name })
+                        %p
+                          #{ simple_format(test.problem.body) }
+                        =link_to edit_user_test_path(@user, test), remote: true do
+                          Submit answer
+                  - else
+                    %h5.text-center No tests started
+  .row
+    .well.col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .user-link-tile
+        %h3.text-center Completed tests
+        %br
+        #completed-test-list
+          - if @user.tests.where.not(github_url: nil).any?
+            - @user.tests.where.not(github_url: nil).each do |test|
+              %div[test]
+                .col-lg-6.col-md-6.col-sm-12.col-xs-12
                   .panel.panel-default
                     .panel-body
-                      %h5[test]
-                        #{ test.problem.title } (from #{ test.problem.user.name })
-                      %p
-                        #{ simple_format(test.problem.body) }
-                      =link_to edit_user_test_path(@user, test), remote: true do
-                        Submit answer
-            - else
-              .panel.panel-default
-                .panel-body
-                  %h5 No tests started
-      .col-lg-4.col-md-4.col-sm-6.col-xs-12
-        .user-link-tile.well
-          %h4 Completed tests
-          #completed-test-list
-            - if @user.tests.where.not(github_url: nil).any?
-              - @user.tests.where.not(github_url: nil).each do |test|
-                .div
-                  .panel.panel-default
-                    .panel-body
-                      %h5[test]
+                      %h5
                         #{ test.problem.title } (from #{ test.problem.user.name })
                       %p
                         #{ simple_format(test.problem.body) }
@@ -66,7 +65,8 @@
                       .pull-right
                         =link_to "https://www.youtube.com/watch?v=" + test.video_url do
                           Video explanation
-            - else
+          - else
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
               .panel.panel-default
                 .panel-body
-                  %h5 No tests completed
+                  %h5.text-center No tests completed
