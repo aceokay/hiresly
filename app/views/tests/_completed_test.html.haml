@@ -1,17 +1,18 @@
-.div[@test]
-  .panel.panel-default
-    .panel-body
-      %h5
-        #{ @test.problem.title } (from #{ @test.problem.user.name })
-      %p
-        #{ simple_format(@test.problem.body) }
-      %hr
-      %h5 Response:
-      %p
-        #{ simple_format(@test.answer_text) }
-      .pull-left
-        =link_to @test.github_url do
-          GitHub repository
-      .pull-right
-        =link_to "https://www.youtube.com/watch?v=" + @test.video_url do
-          Video explanation
+%div[@test]
+  .col-lg-6.col-md-6.col-sm-12.col-xs-12
+    .panel.panel-default
+      .panel-body
+        %h5
+          #{ @test.problem.title } (from #{ @test.problem.user.name })
+        %p
+          #{ simple_format(@test.problem.body) }
+        %hr
+        %h5 Response:
+        %p
+          #{ simple_format(@test.answer_text) }
+        .pull-left
+          =link_to @test.github_url do
+            GitHub repository
+        .pull-right
+          =link_to "https://www.youtube.com/watch?v=" + @test.video_url do
+            Video explanation
