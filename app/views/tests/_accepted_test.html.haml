@@ -1,9 +1,9 @@
+%hr
 %div[@test]
-  .panel.panel-default
-    .panel-body
-      %h5[@test]
-        #{ @test.problem.title } (from #{ @test.problem.user.name })
-      %p
-        #{ simple_format(@test.problem.body) }
-      =link_to edit_user_test_path(@user, @test), remote: true do
-        Submit answer
+  %h5
+    #{ @test.problem.title } (from #{ @test.problem.user.name })
+  %p
+    #{ simple_format(@test.problem.body) }
+  .text-center
+    =link_to edit_user_test_path(@user, @test), class: "btn btn-success", remote: true do
+      Submit answer

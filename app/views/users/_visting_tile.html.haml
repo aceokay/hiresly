@@ -30,7 +30,7 @@
       .well.col-lg-12.col-md-12.col-xs-12
         %h2.text-center Completed tests
         %br
-        - @user.tests.each do |test|
+        - @user.tests.where.not(github_url: nil).each do |test|
           .col-lg-6.col-md-6.col-sm-12.col-xs-12
             .panel.panel-default
               .panel-body
@@ -51,7 +51,7 @@
                     Video explanation
                 %br
                 -# .text-center
-                  -# <iframe width="368" height="207" src="https://www.youtube.com/embed/#{ test.video_url }" frameborder="0" allowfullscreen></iframe>  
+                  -# <iframe width="368" height="207" src="https://www.youtube.com/embed/#{ test.video_url }" frameborder="0" allowfullscreen></iframe>
       .well.col-lg-12.col-md-12.col-sm-12.col-xs-12
         #request-area
           %h2.text-center Test Requests
