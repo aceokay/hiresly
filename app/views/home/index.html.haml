@@ -1,4 +1,18 @@
-.container
-  %h1 Hiresly
-
-  %p There will be a description of the service here. Not much else.
+-# .container
+-#   %h1 Hiresly
+-#
+-#   %p There will be a description of the service here. Not much else.
+.intro-header
+  .container
+    .row
+      .col-lg-12
+        .intro-message
+          %h1 Hiresly
+          %h3 Employers Challenging Developers. Developers Killing It.
+          %hr.intro-divider
+          %ul.list-inline.intro-social-buttons
+            %li
+              =link_to "https://github.com/aceokay/hiresly", class: "btn btn-default btn-lg" do
+                = fa_icon "github"
+                %span.network-name
+                  Github
