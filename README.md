@@ -12,9 +12,9 @@ Developers get the chance to prove their abilities and maintain an active and wo
 [Live Example Pending]()
 
 _Goals for future updates_
-* _Update styling for all user pages_
-* _Update Ajax along with styling alterations_
-* _Implement an 'interests' feature to allow favoriting developers_
+* _Update styling for profile completion_
+* _Implement pre-seeded tests for new Developers to take_
+* _Implement an 'interests' feature to allow favoriting developers within a 'role envelope'_
 
 ###Setup
 1. Clone the repo

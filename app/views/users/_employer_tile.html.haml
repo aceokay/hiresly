@@ -7,31 +7,34 @@
   .container
     .row
       .well.col-lg-12.col-md-12.col-xs-12
-        - if @user.problems.any?
-          .col-lg-4.col-md-4.col-sm-6.col-xs-12
-            %h4 Tests created
-            .panel.panel-default
-              .panel-body
-                %ul#custom-test-list.list-unstyled.text-center
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
+          .panel.panel-default
+            .panel-body
+              %h4.text-center Tests created
+              %hr
+              %ul#custom-test-list.list-unstyled.text-center
+                - if @user.problems.any?
                   - @user.problems.each do |problem|
                     %li= problem.title
                     %hr
-        - if @requests.any?
-          .col-lg-4.col-md-4.col-sm-6.col-xs-12
-            %h4 Pending test requests
-            .panel.panel-default
-              .panel-body
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
+          .panel.panel-default
+            .panel-body
+              %h4.text-center Pending test requests
+              %hr
+              - if @requests.any?
                 %ul#pending-request-list.list-unstyled
                   - @requests.each do |request|
                     .text-center
                       %li
                         #{request.problem.title} sent to #{request.user.name}
                       %hr
-        - if @completed_tests.any?
-          .col-lg-4.col-md-4.col-sm-6.col-xs-12
-            %h4 Test requests completed
-            .panel.panel-default
-              .panel-body
+        .col-lg-4.col-md-4.col-sm-6.col-xs-12
+          .panel.panel-default
+            .panel-body
+              %h4.text-center Test requests completed
+              %hr
+              - if @completed_tests.any?
                 %ul#completed-test-list.list-unstyled
                   - @completed_tests.each do |test|
                     .text-center
