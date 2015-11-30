@@ -3,6 +3,8 @@ FactoryGirl.define do
     name('Sam')
     email('sammie@cheese.com')
     password("cheeseME")
+    linkedin("an account")
+    website("A site")
     developer(true)
     employer(false)
   end
@@ -11,6 +13,8 @@ FactoryGirl.define do
     name('Chuck')
     email('chuck@cheese.com')
     password("chuckME-brah")
+    linkedin("an account")
+    website("A site")
     developer(false)
     employer(true)
   end
