@@ -1,32 +1,27 @@
-<h2>Complete your profile</h2>
 
-<%= form_for @user do |f| %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+<div id="login">
+  <div class="container">
+    <div class="form-signin">
+      <%= form_for @user do |f| %>
+        <h2 class="form-signin-heading">Complete your profile</h2>
 
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, autofocus: true %>
-  </div>
+        <%= f.label :name, class: "sr-only" %>
+        <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Name" %>
 
-  <div class="field">
-    <%= f.label :linkedin %><br />
-    <%= f.text_field :linkedin, autofocus: true %>
-  </div>
+        <%= f.label :address, class: "sr-only" %>
+        <%= f.text_field :address, class: "form-control", placeholder: "Address" %>
 
-  <div class="field">
-    <%= f.label :github %><br />
-    <%= f.text_field :github, autofocus: true %>
-  </div>
+        <%= f.label :linkedin, class: "sr-only" %>
+        <%= f.text_field :linkedin, class: "form-control", placeholder: "LinkedIn URL" %>
 
-  <div class="field">
-    <%= f.label :website %><br />
-    <%= f.text_field :website, autofocus: true %>
-  </div>
+        <%= f.label :github, class: "sr-only" %>
+        <%= f.text_field :github, class: "form-control", placeholder: "GitHub URL" %>
 
-  <div class="actions">
-    <%= f.submit "Finish" %>
+        <%= f.label :website, class: "sr-only" %>
+        <%= f.text_field :website, class: "form-control", placeholder: "Website/Portfolio" %>
+
+        <%= f.submit "Finish", class: "btn btn-lg btn-primary btn-block" %>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
