@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if current_user == @user
-      if @user.name.empty? || @user.linkedin.empty? || @user.website.empty?
+      if @user.name.nil? || @user.linkedin.nil? || @user.website.nil?
         render :edit
       end
     end
