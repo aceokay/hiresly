@@ -24,7 +24,6 @@
                     %br
                     %h2
                       Github
-  - if @user.tests.any?
     .container
       %hr
       %br
@@ -32,30 +31,34 @@
         .well.col-lg-12.col-md-12.col-xs-12
           %h2.text-center Completed tests
           %br
-          - @user.tests.where.not(github_url: nil).each_with_index do |test, index|
-            .col-lg-6.col-md-6.col-sm-12.col-xs-12
-              .panel.panel-default
-                .panel-body
-                  %h3
-                    #{ test.problem.title }
-                  %p
-                    #{ simple_format(test.problem.body) }
-                  %hr
-                  %h5
-                    Response from #{ @user.name }
-                  %p
-                    #{ test.answer_text }
-                  .pull-left
-                    =link_to test.github_url do
-                      GitHub repository
-                  .pull-right
-                    =link_to "https://www.youtube.com/watch?v=" + test.video_url do
-                      Video explanation
-                  %br
-                  -# .text-center
-                    -# <iframe width="368" height="207" src="https://www.youtube.com/embed/#{ test.video_url }" frameborder="0" allowfullscreen></iframe>
-            -if (index + 1) % 2 == 0
-              .clearfix
+          - if @user.tests.any?
+            - @user.tests.where.not(github_url: nil).each_with_index do |test, index|
+              .col-lg-6.col-md-6.col-sm-12.col-xs-12
+                .panel.panel-default
+                  .panel-body
+                    %h3
+                      #{ test.problem.title }
+                    %p
+                      #{ simple_format(test.problem.body) }
+                    %hr
+                    %h5
+                      Response from #{ @user.name }
+                    %p
+                      #{ test.answer_text }
+                    .pull-left
+                      =link_to test.github_url do
+                        GitHub repository
+                    .pull-right
+                      =link_to "https://www.youtube.com/watch?v=" + test.video_url do
+                        Video explanation
+                    %br
+                    -# .text-center
+                      -# <iframe width="368" height="207" src="https://www.youtube.com/embed/#{ test.video_url }" frameborder="0" allowfullscreen></iframe>
+              -if (index + 1) % 2 == 0
+                .clearfix
+          - else
+            %hr
+            %p.text-center None completed yet, just wait.
         .well.col-lg-12.col-md-12.col-sm-12.col-xs-12
           #request-area
             %h2.text-center Test Requests

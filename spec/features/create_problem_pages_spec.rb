@@ -12,7 +12,7 @@ describe "Problem creation path" do
     fill_in 'Problem Title', with: "twit-better, twitter"
     fill_in "Let's hear the challenge!", with: "Make it like twitter scept with less words"
     click_on 'Submit'
-    save_and_open_screenshot
+    # save_and_open_screenshot
     expect(page).to have_content "twit-better, twitter"
   end
 end
