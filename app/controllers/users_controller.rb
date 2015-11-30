@@ -1,10 +1,16 @@
 class UsersController < ApplicationController
   def index
-    @developers = User.where(["developer = ?", "true"])
+    @developers = User.where({ developer: true }).where.not({ name: nil, linkedin: nil, website: nil })
   end
 
   def show
     @user = User.find(params[:id])
+
+    if current_user == @user
+      if @user.name.empty? || @user.linkedin.empty? || @user.website.empty?
+        render :edit
+      end
+    end
 
     if @user != current_user && current_user.employer
       @requests = Request.where({ user_id: @user.id })
@@ -13,14 +19,8 @@ class UsersController < ApplicationController
       @completed_tests = @user.completed_tests
     end
 
-    # binding.pry
     if @user == current_user && @user.developer
       @problems = @user.request_problems
-    end
-
-    # binding.pry
-    if @user.name.nil?
-      render :edit
     end
   end
 
