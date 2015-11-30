@@ -15,6 +15,8 @@ describe "Request creation path" do
     click_on 'Send a test'
     select(problem.title, from: 'Challenge')
     click_on 'Send'
+    visit '/users'
+    click_on developer.name
     # binding.pry
     # expect(page).to have_content problem.title
     expect(page).not_to have_content "Send a test"

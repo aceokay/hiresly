@@ -22,6 +22,7 @@ describe "Test creation path" do
     click_on 'Log in'
     expect(page).to have_content problem.title
     click_on 'Start'
+    visit '/'
     expect(page).to have_content problem.body
   end
 end
