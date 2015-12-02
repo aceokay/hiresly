@@ -62,10 +62,6 @@
         .well.col-lg-12.col-md-12.col-sm-12.col-xs-12
           #request-area
             %h2.text-center Test Requests
-            - if @user.requestable(current_user)
-              #send-request-link.text-center
-                =link_to new_user_request_path(@user), class: "btn btn-success form-control", remote: true do
-                  Send a test
             #pending-request-list
               - @requests.each do |request|
                 %div[request]
@@ -80,3 +76,7 @@
                           .pull-right
                             =link_to user_request_path(@user, request), method: :delete, id: "delete-request-link", class: "btn btn-danger", remote: true do
                               Delete
+            - if @user.requestable(current_user) && current_user.problems.any?
+              #send-request-link.text-center
+                =link_to new_user_request_path(@user), class: "btn btn-success form-control", remote: true do
+                  Send a test

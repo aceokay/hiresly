@@ -43,6 +43,7 @@ developers.each do |name, email, password, linkedin, github, website|
   user = User.create(name: name, email: email, password: password, linkedin: linkedin, github: github, website: website, developer: true, employer: false)
   if user.save
     user.requests.create(user_id: user.id, problem_id: User.where({employer: true}).first.problems.last.id)
-    user.tests.create(problem_id: User.where({employer: true}).first.problems.first.id, video_url: "https://www.youtube.com/watch?v=vT_dDd3HCvA", github_url: "https://github.com/AllenDowney/thinkjavasolutions5/blob/master/chap07/Palindrome.java", answer_text: "I went about it in a novel manner. Written in Java.")
+    test1 = user.tests.create(problem_id: User.where({employer: true}).first.problems.first.id, video_url: "https://www.youtube.com/watch?v=vT_dDd3HCvA", github_url: "https://github.com/AllenDowney/thinkjavasolutions5/blob/master/chap07/Palindrome.java", answer_text: "I went about it in a novel manner. Written in Java.")
+    test1.parse_youtube
   end
 end

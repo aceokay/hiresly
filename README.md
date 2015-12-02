@@ -1,6 +1,6 @@
 #Hiresly
 
-####Version 1.0, November, 15, 2015
+####Version 2.0, November, 15, 2015
 By Austin Kincaid
 
 ###Description
@@ -12,9 +12,11 @@ Developers get the chance to prove their abilities and maintain an active and wo
 [Live Example Pending]()
 
 _Goals for future updates_
-* _Update styling for profile completion_
 * _Implement pre-seeded tests for new Developers to take_
 * _Implement an 'interests' feature to allow favoriting developers within a 'role envelope'_
+* _Implement behavior for problem difficulty_
+* _Deliver list of developers through pagination instead of all at once_
+* _Deliver all lists with pagination to reduce page overload_
 
 ###Setup
 1. Clone the repo
@@ -22,9 +24,7 @@ _Goals for future updates_
 3. To launch Postgres, type `postgres` into the terminal
 4. To create the database, type `rake db:create` into the terminal
 5. To create the tables in the database, type `rake db:migrate` into the terminal
-7. To create the test database, type `rake db:test:prepare` into the terminal
-9. Launch server by typing `rails s` into the terminal and going to `localhost:3000` in your browser
-10. You can now post and prosper
+6. Launch server by typing `rails s` into the terminal and going to `localhost:3000` in your browser
 
 ###Technologies Used
 This app uses Ruby on Rails, Postgres, and ActiveRecord. Test tools are RSpec, Capybara, and Poltergeist.

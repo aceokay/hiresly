@@ -3,6 +3,6 @@
     - @developers.each do |developer|
       =link_to user_path(developer) do
         .col-lg-4.col-md-4.col-sm-6.col-xs-12
-          .well
-            %h4.text-center #{developer.name}
+          .well.text-center
+            %h4 #{developer.name}
             %p Tests complete: #{developer.tests.count}
