@@ -48,7 +48,6 @@ developers.each do |name, email, password, linkedin, github, website|
   end
 end
 
-
 admin = [["Admin K.", "admin@email.com", "asdasdasd", "https://www.linkedin.com/in/aokincaid", "https://github.com/aceokay", "http://aceokay.github.io/"]]
 
 default_problems = [
