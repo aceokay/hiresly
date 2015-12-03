@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    if current_user == @user
+    if current_user == @user && @user.developer == true
       if @user.name.nil? || @user.linkedin.nil? || @user.website.nil?
         render :edit
       end
