@@ -64,4 +64,12 @@ class User < ActiveRecord::Base
     end
     test_array
   end
+
+  # Sends pre-built test Requests to new users
+  def initial_test_pack
+    user = User.where({admin: true}).first
+    user.problems.each do |problem|
+      self.requests.create(user_id: self.id, problem_id: problem.id)
+    end
+  end
 end

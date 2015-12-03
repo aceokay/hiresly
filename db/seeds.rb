@@ -18,7 +18,7 @@ employers = [
 problems = [
   ["Palindrome", "Write code to check a String is palindrome or not."],
   ["Remove Char", "Write a method which will remove any given character from a String."],
-  ["Anagram", "How to check if two String are Anagram"]
+  ["Anagram", "Write a method which will check if two String are Anagram"]
 ]
 
 employers.each do |name, email, password, linkedin, github, website|
@@ -45,5 +45,23 @@ developers.each do |name, email, password, linkedin, github, website|
     user.requests.create(user_id: user.id, problem_id: User.where({employer: true}).first.problems.last.id)
     test1 = user.tests.create(problem_id: User.where({employer: true}).first.problems.first.id, video_url: "https://www.youtube.com/watch?v=vT_dDd3HCvA", github_url: "https://github.com/AllenDowney/thinkjavasolutions5/blob/master/chap07/Palindrome.java", answer_text: "I went about it in a novel manner. Written in Java.")
     test1.parse_youtube
+  end
+end
+
+
+admin = [["Admin K.", "admin@email.com", "asdasdasd", "https://www.linkedin.com/in/aokincaid", "https://github.com/aceokay", "http://aceokay.github.io/"]]
+
+default_problems = [
+  ["Palindrome", "Write code to check a String is palindrome or not."],
+  ["Remove Char", "Write a method which will remove any given character from a String."],
+  ["Anagram", "Write a method which will check if two String are Anagram"]
+]
+
+admin.each do |name, email, password, linkedin, github, website|
+  user = User.create(name: name, email: email, password: password, linkedin: linkedin, github: github, website: website, developer: true, employer: true, admin: true)
+  if user.save
+    default_problems.each do |title, body|
+      user.problems.create(title: title, body: body, difficulty: 1)
+    end
   end
 end

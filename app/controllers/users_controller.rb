@@ -9,6 +9,9 @@ class UsersController < ApplicationController
       if @user.name.nil? || @user.linkedin.nil? || @user.website.nil?
         render :edit
       end
+      if @user.requests.count == 0 && @user.tests.count == 0
+        @user.initial_test_pack
+      end
     end
 
     if @user != current_user && current_user.employer
@@ -30,11 +33,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      @user.name.length == 0 ? @user.name = nil : @user
-      @user.github.length == 0 ? @user.github = nil : @user
-      @user.website.length == 0 ? @user.website = nil : @user
-      @user.save
-      # binding.remote_pry
+      if @user.developer
+        @user.name.length == 0 ? @user.name = nil : @user
+        @user.github.length == 0 ? @user.github = nil : @user
+        @user.website.length == 0 ? @user.website = nil : @user
+        @user.save
+      end
       redirect_to user_path(@user)
     else
       render :edit
