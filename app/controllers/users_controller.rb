@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
     if current_user == @user && @user.developer == true
       if @user.name.nil? || @user.linkedin.nil? || @user.website.nil?
         render :edit
@@ -31,6 +30,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      @user.name.length == 0 ? @user.name = nil : @user
+      @user.github.length == 0 ? @user.github = nil : @user
+      @user.website.length == 0 ? @user.website = nil : @user
+      @user.save
+      # binding.remote_pry
       redirect_to user_path(@user)
     else
       render :edit

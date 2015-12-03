@@ -24,6 +24,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'launchy'
   gem 'pry'
+  gem 'pry-remote'
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'simplecov', require: false
