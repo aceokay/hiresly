@@ -12,6 +12,7 @@ gem 'turbolinks'
 gem 'haml'
 gem 'bcrypt', '~> 3.1.5', require: "bcrypt"
 gem 'devise'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'byebug'
