@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @developers = User.where({ developer: true }).where.not({ name: nil, linkedin: nil, website: nil })
+    @developers = User.where({ developer: true, admin: nil }).where.not({ name: nil, linkedin: nil, website: nil})
   end
 
   def show
